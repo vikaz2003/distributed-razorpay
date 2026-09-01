@@ -1,0 +1,35 @@
+# IDE and editor files
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# Build output
+**/target/
+**/build/
+**/out/
+**/bin/
+**/classes/
+
+# Spring Boot / Eclipse / STS files
+**/.apt_generated
+**/.classpath
+**/.factorypath
+**/.project
+**/.settings/
+**/.springBeans
+**/.sts4-cache
+**/.nb-gradle/
+**/.gradle/
+
+# Local generated help files
+**/HELP.md
+
+# Logs and system files
+*.log
+.DS_Store
+Thumbs.db
+
+# Optional: keep Maven wrapper jar if you want to include it in Git
+# .mvn/wrapper/maven-wrapper.jar

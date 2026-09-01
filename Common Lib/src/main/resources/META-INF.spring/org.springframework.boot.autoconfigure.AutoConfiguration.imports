@@ -1,0 +1,5 @@
+com.vikas.razorpay.commonlib.audit.SharedAuditAutoConfiguration
+com.vikas.razorpay.commonlib.config.SharedKafkaAutoConfiguration
+com.vikas.razorpay.commonlib.exception.SharedExceptionAutoConfiguration
+com.vikas.razorpay.commonlib.idempotency.SharedResilienceAutoConfiguration
+com.vikas.razorpay.commonlib.util.SharedSecurityAutoConfiguration
