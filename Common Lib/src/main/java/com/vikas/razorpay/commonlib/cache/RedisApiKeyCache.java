@@ -1,4 +1,5 @@
-package com.vikas.razorpay.merchant_service.cache;
+package com.vikas.razorpay.commonlib.cache;
+
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,7 +14,7 @@ import java.util.Optional;
 @Component
 @Slf4j
 @RequiredArgsConstructor
-public class RedisApiKeyCache implements ApiKeyCache{
+public class RedisApiKeyCache implements ApiKeyCache {
 
     private static final String PREFIX="apiKey:";
     private static final Duration TTL= Duration.ofMinutes(5);

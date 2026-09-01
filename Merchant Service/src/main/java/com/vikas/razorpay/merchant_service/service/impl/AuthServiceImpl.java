@@ -4,6 +4,7 @@ package com.vikas.razorpay.merchant_service.service.impl;
 
 import com.vikas.razorpay.commonlib.enums.MerchantStatus;
 import com.vikas.razorpay.commonlib.enums.UserRole;
+import com.vikas.razorpay.commonlib.exception.BusinessRuleViolationException;
 import com.vikas.razorpay.commonlib.exception.DuplicateResourceException;
 import com.vikas.razorpay.commonlib.exception.ResourceNotFoundException;
 import com.vikas.razorpay.merchant_service.Entity.AppUser;
@@ -20,8 +21,6 @@ import com.vikas.razorpay.merchant_service.service.AuthService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -35,7 +34,7 @@ public class AuthServiceImpl implements AuthService {
     private final MerchantRepository merchantRepository;
     private final MerchantMapper merchantMapper;
     private final PasswordEncoder passwordEncoder;
-    private final AuthenticationManager authenticationManager;
+
     private final JwtUtil jwtUtil;
 
     @Override
@@ -63,9 +62,13 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public LoginResponseDto login(LoginRequestDto requestDto) {
-          authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(requestDto.email(),requestDto.password()));
+          // verify the password
+
           AppUser user=appUserRepository.findByEmail(requestDto.email())
                   .orElseThrow(()-> new ResourceNotFoundException("Email","Email"));
+          if(!passwordEncoder.matches(requestDto.password(), user.getPasswordHash())){
+               throw new BusinessRuleViolationException("Invalid Credentials","Invalid email or password");
+          }
          String token=jwtUtil.generateAccessToken(requestDto.email(),user.getMerchant().getId(), requestDto.password());
          return new LoginResponseDto(token);
     }

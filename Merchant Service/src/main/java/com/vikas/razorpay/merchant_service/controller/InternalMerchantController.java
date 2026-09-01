@@ -13,7 +13,7 @@ import java.util.UUID;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/internal/merchants")
-public class InternalController {
+public class InternalMerchantController {
 
     private final MerchantLookupService merchantLookupService;
 

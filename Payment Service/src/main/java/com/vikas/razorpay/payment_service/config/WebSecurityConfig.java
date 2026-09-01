@@ -1,4 +1,4 @@
-package com.vikas.razorpay.merchant_service.security;
+package com.vikas.razorpay.payment_service.config;
 
 
 import com.vikas.razorpay.commonlib.idempotency.IdempotencyFilter;
@@ -9,8 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import org.springframework.core.Ordered;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+
 
 
 @Configuration
@@ -30,11 +29,6 @@ public class WebSecurityConfig {
     }
 
 
-    @Bean
-    public PasswordEncoder passwordEncoder(){
-
-        return new BCryptPasswordEncoder();
-    }
 
 
 }

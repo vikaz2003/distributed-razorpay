@@ -1,5 +1,5 @@
 spring:
   application:
-    name: payment-service
+    name: api-gateway
   config:
     import: configserver:http://localhost:8888
